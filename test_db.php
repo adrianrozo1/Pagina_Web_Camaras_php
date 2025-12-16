@@ -4,10 +4,10 @@ require 'db.php';
 $result = $conn->query("SHOW TABLES");
 
 if ($result) {
-    echo "✅ Conectado correctamente<br><br>";
+    echo "✅ CONECTADO A LA BASE DE DATOS<br><br>";
     while ($row = $result->fetch_array()) {
-        echo $row[0] . "<br>";
+        echo "📁 " . $row[0] . "<br>";
     }
 } else {
-    echo "❌ Error en la consulta";
+    echo "❌ No se pudieron obtener las tablas";
 }
