@@ -1,15 +1,13 @@
 FROM php:8.2-apache
 
-# 🔴 INSTALAR EXTENSIONES MYSQL PARA PHP
+# Instalar extensiones necesarias para MySQL
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
-# (Opcional) URLs amigables
+# Habilitar mod_rewrite
 RUN a2enmod rewrite
 
-# Copiar el proyecto
+# Copiar TODO tu proyecto (tal como está)
 COPY . /var/www/html/
 
-# Permisos
+# Permisos correctos
 RUN chown -R www-data:www-data /var/www/html
-
-EXPOSE 80

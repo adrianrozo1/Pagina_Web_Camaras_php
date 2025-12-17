@@ -1,0 +1,31 @@
+services:
+  db:
+    image: mysql:8.4
+    container_name: mysql_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: camarasDB
+      MYSQL_DATABASE: camarasDB
+      MYSQL_USER: aplicamaras
+      MYSQL_PASSWORD: aplicamaras
+    volumes:
+      - db_data_1:/var/lib/mysql
+
+  app:
+    build: .
+    image: mi-web
+    container_name: mi_app_web
+    restart: always
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_USER: aplicamaras
+      DB_PASS: aplicamaras
+      DB_NAME: camarasDB
+      DB_PORT: 3306
+    ports:
+      - "8081:80"
+
+volumes:
+  db_data_1:
